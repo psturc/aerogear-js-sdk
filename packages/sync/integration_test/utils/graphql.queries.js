@@ -101,3 +101,21 @@ export const ONLINE_ONLY = gql`
     }
   }
 `;
+
+export const UPLOAD_FILE = gql`
+mutation singleUpload($file: Upload!) {
+  singleUpload(file: $file) {
+    filename
+  }
+}
+`;
+
+export const UPLOADS = gql`
+  query uploads {
+    uploads {
+      filename
+      mimetype
+      url
+    }
+  }
+`;

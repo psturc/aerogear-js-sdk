@@ -2,14 +2,14 @@ const express = require('express');
 const { VoyagerServer } = require('@aerogear/voyager-server');
 const http = require('http');
 
-const schema = require('./schema').schema;
+const { typeDefs, resolvers } = require('./schema');
 
 const PORT = 4000;
 
 function start() {
   const app = express();
 
-  const apolloServer = VoyagerServer({ schema });
+  const apolloServer = VoyagerServer({ typeDefs, resolvers });
   const httpServer = http.createServer(app);
   apolloServer.installSubscriptionHandlers(httpServer);
   apolloServer.applyMiddleware({ app });
